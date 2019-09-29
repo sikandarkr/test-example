@@ -1,26 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route, Switch, BrowserRouter as router, Redirect } from 'react-router-dom';
+import TopNavbar from '../src/component/Pages/Navbar';
+import PrivateRoute from '../src/PrivateRoute';
+import AuthRoute from '../src/AuthRoute';
+import Register from '../src/component/Auth/Register';
+import Profiles from '../src/component/Pages/Profiles'
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class  App extends React.Component {
+  render(){
+    return (
+      <div className="App">
+        
+          <router>
+            <switch>
+              <Route  path="/" component={TopNavbar}/>
+              <AuthRoute exact path="/login" component={Register} />
+              <AuthRoute exact path="/u" component={Register} />
+              <PrivateRoute exact path="/profile" component={Profiles} />
+            </switch>
+          </router>
+      </div>
+    );
+  }
 }
-
 export default App;
